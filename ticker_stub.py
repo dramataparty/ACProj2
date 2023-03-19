@@ -44,3 +44,46 @@ def send_receive(self, data):
         
 
         #parâmetros linha de comandos
+
+
+#------------------------------------------------------------------------------
+#Implementar isto (stub) com a funcionalidade de cima
+
+import socket, struct , pickle
+class ListStub:
+    def __init__(self):
+        self.conn_sock = socket
+    def connect(self, host, port):
+        self.conn_sock=socket.connect(host,port)
+    # código para estabelecer uma ligação,
+    # i.e., tornando self.conn_sock válida
+    def disconnect(self):
+        self.conn_sock.close()
+    # Fecha a ligação conn_sock
+    # Métodos tradicionais de um objeto do tipo lista
+    def append(self, element):
+        pedido = ["ADICIONAR",element]
+        self.sendBytes(pedido)
+        resposta = self.recieveLista()
+        return resposta
+        
+    def list(self):
+        pedido = ["list"]
+        self.sendBytes(pedido)
+        resposta = self.recieveLista()
+        return resposta
+        
+    def clear(self):
+        pedido = ["clear"]
+        self.sendBytes(pedido)
+        resposta = self.recieveLista()
+        return resposta
+        
+        
+    # Outros métodos possíveis
+    
+    def bytesTolist(bytes):
+        lista = []
+        resp= pickle.loads(bytes)
+        return resp
+        pass
