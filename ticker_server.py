@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-Aplicações Distribuídas - Projeto 1 - ticker_server.py
+Aplicações Distribuídas - Projeto 2 - ticker_server.py
 Grupo: 52
 Números de aluno: 56931, 56922
 """
