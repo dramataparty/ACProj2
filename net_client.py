@@ -11,38 +11,30 @@ import sys, socket as s
 
 # definição da classe server_connection 
 
-
-
 class server_connection:
     def __init__(self, address, port):
         
         if len(sys.argv) > 1:
             self.address = address
             self.port = port   
-            su.create_tcp_client_socket(address, port);
+            su.create_tcp_client_socket(address, port)
         else:
-            su.create_tcp_client_socket('127.0.0.1',9999);
-    pass # Remover esta linha e fazer implementação da função
+            su.create_tcp_client_socket('127.0.0.1',9999)
     
-
     def connect(self):
-        s.connect((self.address, self.port))
-    pass # Remover esta linha e fazer implementação da função
+        conn_sock = s.socket(s.AF_INET, s.SOCK_STREAM)
+        conn_sock.connect((self.address, self.port))
+        return conn_sock
 
     def send_receive(self, data):
+        conn_sock = server_connection.connect(self)
         while True:
-            msg = str(input('comando >'));
-            s.sendall(msg.encode('utf-8'))
-            resposta = s.recv(1024)
-            print("resposta: " + resposta.decode())
+            msg = str(input('comando >'))
             if msg == 'EXIT':
                 break
-                
-    pass # Remover esta linha e fazer implementação da função
-
+            conn_sock.sendall(msg.encode('utf-8'))
+            resposta = conn_sock.recv(1024)
+            print("resposta: " + resposta.decode())
+            
     def close(self):
         s.close()    
-    pass # Remover esta linha e fazer implementação da função
-
-
-
