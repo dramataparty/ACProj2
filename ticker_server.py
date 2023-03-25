@@ -46,9 +46,9 @@ class resource:
 
 
 
-class resource_pool:
-    subs = {}      
+class resource_pool:   
     def __init__(self, N, K, M):
+        self.subs = {}
         self.N = N
         self.K = K
         self.M = M
