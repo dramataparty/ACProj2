@@ -13,6 +13,8 @@ Números de aluno: 56931, 56922
 import sock_utils as su
 import sys, socket as s
 import select as sel
+import threading 
+import time
 
 
 ###############################################################################
@@ -73,7 +75,12 @@ while True:
 ''' # Remover esta linha e fazer implementação da função
 
     def clear_expired_subs(self):
-        subs = {}
+        delay = 10
+        while True:
+            time.sleep(delay)
+            now = time.time()
+            with list_lock:
+                lst[:] = [elem for elem in lst if now - elem[1] < delay]
     pass # Remover esta linha e fazer implementação da função
 
     def subscribe(self, resource_id, client_id, time_limit):
