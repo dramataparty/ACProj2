@@ -12,6 +12,7 @@ Números de aluno: 56931, 56922
 
 import sock_utils as su
 import sys, socket as s
+import select as sel
 
 
 ###############################################################################
@@ -44,14 +45,32 @@ class resource:
 
 
 class resource_pool:
-    subs = {}
-    
-        
+    subs = {}      
     def __init__(self, N, K, M):
         self.N = N
         self.K = K
         self.M = M
-    pass # Remover esta linha e fazer implementação da função
+    pass
+    '''
+SocketList = [ListenSocket]
+while True:
+    R, W, X = sel.select(SocketList, [], []) # Espera sockets com
+    for sckt in R: # dados para leitura
+        if sckt is ListenSocket: # Se for a socket de escuta
+            conn_sock, (addr, port) = ListenSocket.accept()
+            print('Novo cliente ligado desde %s:%d' % (addr, port))
+        SocketList.append(conn_sock) # Adiciona ligação à lista
+        else: # Se for a socket de um cliente
+            msg = sckt.recv(1024)
+        if msg: # Se recebeu dados
+            sckt.sendall(msg[::-1]) # responde
+        else: # Se não recebeu dados
+            sckt.close() # cliente fechou ligação
+            SocketList.remove(sckt)
+            print('Cliente fechou ligação')
+
+
+''' # Remover esta linha e fazer implementação da função
 
     def clear_expired_subs(self):
         subs = {}

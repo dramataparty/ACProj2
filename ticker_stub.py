@@ -40,9 +40,6 @@ def send_receive(self, data):
 
         else:
             print("UNKNOWN-COMMAND")
-
-        
-
         #parâmetros linha de comandos
 
 
