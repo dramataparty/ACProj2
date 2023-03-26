@@ -53,6 +53,8 @@ class resource_pool:
     pass
 
     global msg
+    
+    
     '''
 SocketList = [ListenSocket]
 while True:
@@ -72,7 +74,8 @@ while True:
             print('Cliente fechou ligação')
 
 
-''' # Remover esta linha e fazer implementação da função
+'''
+# Remover esta linha e fazer implementação da função
 
     def clear_expired_subs(self):
         delay = 10
