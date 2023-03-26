@@ -37,6 +37,7 @@ class resource:
 
         def __repr__(self):
             output = ""
+            
             # R <resource_id> <list of subscribers>
 
             return output
@@ -78,8 +79,7 @@ while True:
         while True:
             time.sleep(delay)
             now = time.time()
-            with list_lock:
-                self.subs[:] = [elem for elem in self.subs if now - elem[1] < delay]
+            self.subs[:] = [elem for elem in self.subs if now - elem[1] < delay]
 
     def subscribe(self, resource_id, client_id, time_limit):
         if(client_id not in self.subs):
@@ -117,6 +117,7 @@ while True:
                     
             return subbed #lista de elementos subscritos
         elif option=="K":
+            
             return #<número de ações que cliente ainda pode subscre-ver>
 
     def statis(self, option, resource_id):

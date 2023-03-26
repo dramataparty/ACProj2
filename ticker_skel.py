@@ -2,7 +2,7 @@
 
 
 import pickle
-from Stub import ListStub
+from ticker_stub import ListStub
 
 class ListSkeleton:
     def __init__(self):
