@@ -6,10 +6,10 @@ from Stub import ListStub
 
 class ListSkeleton:
     def __init__(self):
-        self.servicoLista = [];
+        self.servicoLista = []
     def processMessage(self, msg_bytes) :
         pedido = ListStub.bytesToList(msg_bytes)
-        resposta = [];
+        resposta = []
         if pedido == None or len(pedido) == 0 :
             resposta.append('INVALID MESSAGE')
         else :
@@ -23,12 +23,11 @@ class ListSkeleton:
                 resposta.append('OK')
             else :
                 resposta.append('INVALID MESSAGE')
-        return listToBytes(resposta)
-    #fim do metodo 
+        return ListSkeleton.listToBytes(self, resposta)
     
 #outros métodos possíveis    
-    def listToBytes(msg):
-                mess =pickle.dumps(msg)
+    def listToBytes(self, msg):
+                mess = pickle.dumps(msg)
                 con = self.conn_sock
                 con.sendall(mess)
                 return mess

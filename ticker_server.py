@@ -28,15 +28,12 @@ class resource:
 
         def subscribe(self, client_id, time_limit):
             return resource_pool.subscribe(self, client_id, time_limit)
-            pass # Remover esta linha e fazer implementação da função
 
         def unsubscribe (self, client_id):
             return resource_pool.unsubscribe(self, client_id)
-            pass # Remover esta linha e fazer implementação da função
 
         def status(self, client_id):
             return resource_pool.status(self, client_id)
-            pass # Remover esta linha e fazer implementação da função
 
         def __repr__(self):
             output = ""
@@ -81,7 +78,6 @@ while True:
             now = time.time()
             with list_lock:
                 lst[:] = [elem for elem in lst if now - elem[1] < delay]
-    pass # Remover esta linha e fazer implementação da função
 
     def subscribe(self, resource_id, client_id, time_limit):
         if(client_id not in resource_pool.subs):
@@ -91,9 +87,6 @@ while True:
             return 'NOK'
         else:
             return 'UNKNOWN RESOURCE'
-            
-    
-    pass # Remover esta linha e fazer implementação da função
 
     def unsubscribe (self, resource_id, client_id):
         if(client_id in resource_pool.subs):
@@ -103,7 +96,6 @@ while True:
             return 'NOK'
         else:
             return 'UNKNOWN RESOURCE'
-    pass # Remover esta linha e fazer implementação da função
 
     def status(self, resource_id, client_id):
         if({resource_id:client_id} in resource_pool.subs):
@@ -113,7 +105,6 @@ while True:
             return 'UNSUBSCRIBED'
         else:
             return 'UNKNOWN RESOURCE'
-    pass # Remover esta linha e fazer implementação da função
 
     def infos(self, option, client_id):
         if option=="M":
@@ -125,7 +116,6 @@ while True:
             return subbed #lista de elementos subscritos
         elif option=="K":
             return #<número de ações que cliente ainda pode subscre-ver>
-    pass # Remover esta linha e fazer implementação da função
 
     def statis(self, option, resource_id):
         if option=="L":
@@ -133,7 +123,6 @@ while True:
                 return 'UNKNOWN RESOURCE'
         elif option=="ALL":
             return len(resource_pool.subs)#numero coisas
-    pass # Remover esta linha e fazer implementação da função
 
    
     
@@ -152,6 +141,4 @@ while True:
         output += process(msg) + '\n'
         # Acrescentar no output uma linha por cada recurso
         return output
-
-
-
+    
