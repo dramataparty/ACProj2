@@ -25,3 +25,8 @@ while True:
     client_socket, client_address = server_socket.accept()
     thread = threading.Thread(target=handle_connection, args=(client_socket))
     thread.start()
+    
+    
+
+
+

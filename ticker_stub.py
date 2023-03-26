@@ -9,7 +9,9 @@ Números de aluno: 56931, 56922
 
 import sock_utils as su
 import sys, socket as s
-
+import resource
+from ticker_server import resource_pool
+import socket, struct , pickle
 # Programa principal
 
 def send_receive(self, data):
@@ -18,10 +20,9 @@ def send_receive(self, data):
         #validar o comando fornecido
         
         local_commands = []
-        serv_commands = []
+        serv_commands = resource_pool.cmds.values()
         if msg in local_commands:
-            a = "process"
-            #processar
+            resource.process(msg)
         
         if msg in serv_commands:
             conn_sock = s.socket(s.AF_INET, s.SOCK_STREAM)
@@ -45,8 +46,6 @@ def send_receive(self, data):
 
 #------------------------------------------------------------------------------
 #Implementar isto (stub) com a funcionalidade de cima
-
-import socket, struct , pickle
 class ListStub:
     def __init__(self):
         self.conn_sock = socket
