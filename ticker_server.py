@@ -82,20 +82,20 @@ while True:
     def subscribe(self, resource_id, client_id, time_limit):
         if(client_id not in resource_pool.subs):
             resource_pool.subs.update({resource_id:client_id})
-            return 'OK'
+            return 'True'
         elif(client_id in resource_pool.subs):
-            return 'NOK'
+            return 'False'
         else:
-            return 'UNKNOWN RESOURCE'
+            return 'None'
 
     def unsubscribe (self, resource_id, client_id):
         if(client_id in resource_pool.subs):
             resource_pool.subs.pop({resource_id:client_id})
-            return 'OK'
+            return 'True'
         elif(client_id not in resource_pool.subs):
-            return 'NOK'
+            return 'False'
         else:
-            return 'UNKNOWN RESOURCE'
+            return 'None'
 
     def status(self, resource_id, client_id):
         if({resource_id:client_id} in resource_pool.subs):
@@ -104,7 +104,7 @@ while True:
         if ({resource_id:client_id} not in resource_pool.subs):
             return 'UNSUBSCRIBED'
         else:
-            return 'UNKNOWN RESOURCE'
+            return 'None'
 
     def infos(self, option, client_id):
         if option=="M":
@@ -120,7 +120,7 @@ while True:
     def statis(self, option, resource_id):
         if option=="L":
             if resource_id not in resource_pool.subs:
-                return 'UNKNOWN RESOURCE'
+                return 'None'
         elif option=="ALL":
             return len(resource_pool.subs)#numero coisas
 

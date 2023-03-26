@@ -15,12 +15,12 @@ class ListSkeleton:
         else :
             if pedido[0] == 'append' and len(pedido) > 1 :
                 self.servicoLista.append(pedido[1])
-                resposta.append('OK')
+                resposta.append('True')
             elif pedido[0] == 'list' :
                 resposta.append(str(self.servicoLista))
             elif pedido[0] == 'clear' :
                 self.servicoLista = []
-                resposta.append('OK')
+                resposta.append('True')
             else :
                 resposta.append('INVALID MESSAGE')
         return ListSkeleton.listToBytes(self, resposta)
