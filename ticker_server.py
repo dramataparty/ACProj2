@@ -55,7 +55,7 @@ class resource_pool:
     global msg
     
     
-    '''
+
 SocketList = [ListenSocket]
 while True:
     R, W, X = sel.select(SocketList, [], []) # Espera sockets com
@@ -74,7 +74,6 @@ while True:
             print('Cliente fechou ligação')
 
 
-'''
 # Remover esta linha e fazer implementação da função
 
     def clear_expired_subs(self):

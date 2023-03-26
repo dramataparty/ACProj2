@@ -15,8 +15,7 @@ class server_connection:
     def __init__(self, address, port):
         
         if len(sys.argv) > 1:
-            self.address = address
-            self.port = port   
+            self.address , self.port = s.getsockname()   
             su.create_tcp_client_socket(address, port)
         else:
             su.create_tcp_client_socket('127.0.0.1',9999)
