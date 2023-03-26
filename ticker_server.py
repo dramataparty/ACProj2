@@ -27,7 +27,7 @@ class resource:
         pass # Remover esta linha e fazer implementação da função
 
         def subscribe(self, client_id, time_limit):
-            return resource_pool.subscribe(self, client_id, time_limit)
+            return self.subscribe(self, client_id, time_limit)
 
         def unsubscribe (self, client_id):
             return resource_pool.unsubscribe(self, client_id)
@@ -50,6 +50,8 @@ class resource_pool:
         self.K = K
         self.M = M
     pass
+
+    global msg
     '''
 SocketList = [ListenSocket]
 while True:
@@ -77,31 +79,31 @@ while True:
             time.sleep(delay)
             now = time.time()
             with list_lock:
-                lst[:] = [elem for elem in lst if now - elem[1] < delay]
+                self.subs[:] = [elem for elem in self.subs if now - elem[1] < delay]
 
     def subscribe(self, resource_id, client_id, time_limit):
-        if(client_id not in resource_pool.subs):
-            resource_pool.subs.update({resource_id:client_id})
+        if(client_id not in self.subs):
+            self.subs.update({resource_id:client_id})
             return 'True'
-        elif(client_id in resource_pool.subs):
+        elif(client_id in self.subs):
             return 'False'
         else:
             return 'None'
 
     def unsubscribe (self, resource_id, client_id):
-        if(client_id in resource_pool.subs):
-            resource_pool.subs.pop({resource_id:client_id})
+        if(client_id in self.subs):
+            self.subs.pop({resource_id:client_id})
             return 'True'
-        elif(client_id not in resource_pool.subs):
+        elif(client_id not in self.subs):
             return 'False'
         else:
             return 'None'
 
     def status(self, resource_id, client_id):
-        if({resource_id:client_id} in resource_pool.subs):
+        if({resource_id:client_id} in self.subs):
             
             return 'SUBSCRIBED'
-        if ({resource_id:client_id} not in resource_pool.subs):
+        if ({resource_id:client_id} not in self.subs):
             return 'UNSUBSCRIBED'
         else:
             return 'None'
@@ -109,7 +111,7 @@ while True:
     def infos(self, option, client_id):
         if option=="M":
             subbed = []
-            for i in resource_pool.subs:
+            for i in self.subs:
                 if client_id in i:
                     subbed.append({i})
                     
@@ -119,21 +121,24 @@ while True:
 
     def statis(self, option, resource_id):
         if option=="L":
-            if resource_id not in resource_pool.subs:
+            if resource_id not in self.subs:
                 return 'None'
         elif option=="ALL":
-            return len(resource_pool.subs)#numero coisas
+            return len(self.subs)#numero coisas
 
-   
-    
+
+
+    global cmds 
     cmds = {'SUBSCR': subscribe,
             'CANCEL':unsubscribe,
             'STATUS':status ,
             'INFOS': infos ,
             'STATIS': statis }
-    
+    global process
     def process(line):
+       
         cmd, *args = line.split()
+        
         return cmds[cmd](*args)
     
     def __repr__(self):
@@ -141,4 +146,3 @@ while True:
         output += process(msg) + '\n'
         # Acrescentar no output uma linha por cada recurso
         return output
-    
